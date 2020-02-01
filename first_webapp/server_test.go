@@ -7,18 +7,18 @@ import (
 
 func Test_handler(t *testing.T) {
 	/*
-	type args struct {
-		writer  http.ResponseWriter
-		request *http.Request
-	}
+		type args struct {
+			writer  http.ResponseWriter
+			request *http.Request
+		}
 	*/
 	tests := []struct {
 		name string
 		args *args
 	}{
 		// TODO: Add test cases.
-	//	{ "test01", NewArgs(http.ResponseWriter, new(http.Request))},
-	//	{ "test02", new(args)},
+		//	{ "test01", NewArgs(http.ResponseWriter, new(http.Request))},
+		//	{ "test02", new(args)},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -45,7 +45,7 @@ type args struct {
 	request *http.Request
 }
 
-func NewArgs(writer  http.ResponseWriter, request *http.Request) *args {
+func NewArgs(writer http.ResponseWriter, request *http.Request) *args {
 	m := new(args)
 	m.writer = writer
 	m.request = request

@@ -7,8 +7,8 @@ func Test_main(t *testing.T) {
 		name string
 	}{
 		// TODO: Add test cases.
-	//	{"test01"},
-	//	{"test02"},
+		//	{"test01"},
+		//	{"test02"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

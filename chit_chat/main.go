@@ -1,21 +1,30 @@
 package main
 
 import (
-	"fmt"
+	"github.com/sausheong/gwp/Chapter_2_Go_ChitChat/chitchat/data"
 	"net/http"
+	"text/template"
 )
 
 func main() {
 	mux := http.NewServeMux()
 	files := http.FileServer(http.Dir("/public"))
 	mux.Handle("/static", http.StripPrefix("/static/", files))
-	mux.HandleFunc("/", //index)
-		func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprint(w, "About Page")
-		})
+	mux.HandleFunc("/", index)
 	server := &http.Server{
 		Addr:    "0.0.0.0:8080",
 		Handler: mux,
 	}
 	server.ListenAndServe()
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+	files := []string{"templates/layout.html",
+		"templates/navbar.html",
+		"templates/index.html"}
+	templates := template.Must(template.ParseFiles(files...))
+	threads, err := data.Threads()
+	if err == nil {
+		templates.ExecuteTemplate(w, "layout", threads)
+	}
 }
